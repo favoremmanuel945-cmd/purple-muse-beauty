@@ -4646,3 +4646,382 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==================================================
+   PURPLE MUSE — MOBILE NAVIGATION
+================================================== */
+
+.mobile-nav-details {
+  display: none;
+}
+
+/* --------------------------------------------------
+   MOBILE
+-------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .nav-center,
+  .nav-book {
+    display: none !important;
+  }
+
+  .mobile-nav-details {
+    display: block;
+    margin-left: auto;
+  }
+
+  /* remove native disclosure arrow */
+  .mobile-nav-toggle {
+    list-style: none;
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border-radius: 9px;
+
+    border: 1px solid rgba(216,180,254,.32);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(168,85,247,.13),
+        rgba(255,255,255,.025)
+      );
+
+    box-shadow:
+      0 0 18px rgba(168,85,247,.12);
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 20002;
+  }
+
+  .mobile-nav-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav-toggle::marker {
+    display: none;
+    content: "";
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+
+    width: 19px;
+    height: 1.5px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    transition:
+      transform .35s ease,
+      opacity .25s ease,
+      width .35s ease;
+  }
+
+  .mobile-nav-toggle span:nth-child(2) {
+    width: 13px;
+    margin-left: 6px;
+  }
+
+  /* animate hamburger into X */
+
+  .mobile-nav-details[open]
+  .mobile-nav-toggle span:nth-child(1) {
+    transform:
+      translateY(6.5px)
+      rotate(45deg);
+  }
+
+  .mobile-nav-details[open]
+  .mobile-nav-toggle span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-nav-details[open]
+  .mobile-nav-toggle span:nth-child(3) {
+    transform:
+      translateY(-6.5px)
+      rotate(-45deg);
+  }
+
+  /* FULLSCREEN MENU */
+
+  .mobile-nav-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    min-height: 100svh;
+
+    z-index: 20000;
+
+    padding:
+      max(26px, env(safe-area-inset-top))
+      20px
+      max(26px, env(safe-area-inset-bottom));
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+      radial-gradient(
+        circle at 75% 15%,
+        rgba(139,92,246,.27),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 15% 80%,
+        rgba(168,85,247,.12),
+        transparent 35%
+      ),
+      #100817;
+
+    overflow: hidden;
+
+    animation:
+      purpleMenuReveal .42s
+      cubic-bezier(.22,.8,.25,1)
+      both;
+  }
+
+  .mobile-nav-overlay::before {
+    content: "MUSE";
+
+    position: absolute;
+
+    left: -7%;
+    top: 49%;
+
+    transform: translateY(-50%);
+
+    font-family: "Playfair Display";
+    font-style: italic;
+
+    font-size: 47vw;
+
+    line-height: .75;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+      1px rgba(216,180,254,.07);
+
+    pointer-events: none;
+  }
+
+  .mobile-nav-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+    z-index: 3;
+  }
+
+  .mobile-nav-brand {
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: -.02em;
+  }
+
+  .mobile-nav-brand span {
+    color: var(--lavender);
+  }
+
+  /*
+    actual clickable X is still the hamburger summary
+    sitting over this decorative X
+  */
+
+  .mobile-nav-close {
+    width: 42px;
+
+    text-align: center;
+
+    font-family: "DM Sans";
+    font-size: 28px;
+    font-weight: 300;
+
+    opacity: 0;
+  }
+
+  /* MENU ITEMS */
+
+  .mobile-nav-links {
+    position: relative;
+    z-index: 3;
+
+    margin-top: auto;
+    margin-bottom: auto;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-links > a {
+    position: relative;
+
+    width: 100%;
+
+    padding: 19px 0;
+
+    display: grid;
+
+    grid-template-columns:
+      38px
+      1fr;
+
+    align-items: center;
+
+    border-bottom:
+      1px solid rgba(255,255,255,.11);
+
+    font-family: "Playfair Display";
+
+    font-size:
+      clamp(42px, 13vw, 66px);
+
+    line-height: .92;
+
+    letter-spacing: -.055em;
+
+    color: white;
+
+    text-decoration: none;
+
+    transition:
+      color .25s ease,
+      padding-left .3s ease;
+  }
+
+  .mobile-nav-links > a:first-child {
+    border-top:
+      1px solid rgba(255,255,255,.11);
+  }
+
+  .mobile-nav-links > a > span {
+    align-self: start;
+
+    margin-top: 5px;
+
+    font-family: "DM Sans";
+
+    font-size: 7px;
+
+    letter-spacing: .12em;
+
+    color: var(--lavender);
+  }
+
+  .mobile-nav-links .mobile-book-link {
+    color: var(--lavender);
+    font-style: italic;
+  }
+
+  .mobile-nav-links > a:active {
+    padding-left: 8px;
+  }
+
+  /* decorative orbital graphic */
+
+  .mobile-nav-decoration {
+    position: absolute;
+
+    right: -60px;
+    top: 22%;
+
+    width: 190px;
+    height: 190px;
+
+    pointer-events: none;
+
+    opacity: .62;
+  }
+
+  .mobile-nav-orbit {
+    position: absolute;
+
+    inset: 30px;
+
+    border:
+      1px solid rgba(216,180,254,.25);
+
+    border-radius: 50%;
+  }
+
+  .orbit-a {
+    transform: rotate(35deg) scaleX(1.45);
+  }
+
+  .orbit-b {
+    transform: rotate(-35deg) scaleX(1.45);
+  }
+
+  .mobile-nav-decoration > span {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+
+    color: var(--lavender);
+
+    font-size: 24px;
+
+    text-shadow:
+      0 0 22px rgba(216,180,254,.55);
+  }
+
+  /* FOOTER */
+
+  .mobile-nav-footer {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding-top: 18px;
+
+    border-top:
+      1px solid rgba(255,255,255,.09);
+
+    color: rgba(255,255,255,.38);
+
+    font-size: 6px;
+
+    letter-spacing: .16em;
+  }
+}
+
+
+/* menu opening animation */
+
+@keyframes purpleMenuReveal {
+
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -343,24 +343,102 @@ function App() {
       </div>
 
       <nav className="nav">
-        <a className="logo" href="#">
-          PURPLE<span>MUSE</span>
-        </a>
+        <Link to="/" className="logo">
+          PURPLE <span>MUSE</span>
+        </Link>
 
         <div className="nav-center">
-          <a href="#services">Services</a>
-          <a href="#work">Lookbook</a>
-          <a href="#about">About</a>
+          <a href="#services">SERVICES</a>
+          <a href="#work">LOOKBOOK</a>
+          <a href="#about">ABOUT</a>
         </div>
 
         <Link className="nav-book" to="/booking">
-          Book appointment
-          <ArrowUpRight size={15} />
+          BOOK APPOINTMENT <span>↗</span>
         </Link>
 
-        <button className="menu">
-          <Menu />
-        </button>
+        <details className="mobile-nav-details">
+          <summary
+            className="mobile-nav-toggle"
+            aria-label="Open navigation menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </summary>
+
+          <div className="mobile-nav-overlay">
+            <div className="mobile-nav-top">
+              <div className="mobile-nav-brand">
+                PURPLE <span>MUSE</span>
+              </div>
+
+              <span className="mobile-nav-close">×</span>
+            </div>
+
+            <div className="mobile-nav-links">
+              <a
+                href="#services"
+                onClick={(e) =>
+                  e.currentTarget
+                    .closest("details")
+                    ?.removeAttribute("open")
+                }
+              >
+                <span>01</span>
+                SERVICES
+              </a>
+
+              <a
+                href="#work"
+                onClick={(e) =>
+                  e.currentTarget
+                    .closest("details")
+                    ?.removeAttribute("open")
+                }
+              >
+                <span>02</span>
+                LOOKBOOK
+              </a>
+
+              <a
+                href="#about"
+                onClick={(e) =>
+                  e.currentTarget
+                    .closest("details")
+                    ?.removeAttribute("open")
+                }
+              >
+                <span>03</span>
+                ABOUT
+              </a>
+
+              <Link
+                to="/booking"
+                className="mobile-book-link"
+                onClick={(e) =>
+                  e.currentTarget
+                    .closest("details")
+                    ?.removeAttribute("open")
+                }
+              >
+                <span>04</span>
+                BOOK APPOINTMENT
+              </Link>
+            </div>
+
+            <div className="mobile-nav-decoration">
+              <div className="mobile-nav-orbit orbit-a"></div>
+              <div className="mobile-nav-orbit orbit-b"></div>
+              <span>✦</span>
+            </div>
+
+            <div className="mobile-nav-footer">
+              <span>NAILS · LASHES · BEAUTY</span>
+              <span>PURPLE MUSE © 2026</span>
+            </div>
+          </div>
+        </details>
       </nav>
 
       <section className="hero">
